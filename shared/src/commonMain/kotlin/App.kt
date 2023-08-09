@@ -1,4 +1,5 @@
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,38 +8,10 @@ import androidx.compose.runtime.setValue
 
 @Composable
 fun App() {
-    var currentScreen: Route by rememberSaveable { mutableStateOf(Route.Welcome) }
 
     MaterialTheme {
-        when (currentScreen) {
-            Route.Welcome -> WelcomeScreen(
-                route = { currentScreen = it }
-            )
+        Text("Hello ${getPlatformName()}")
 
-            Route.Resources -> ResourcesScreen(
-                backAction = { currentScreen = Route.Welcome }
-            )
-
-            Route.ViewModel -> ViewModelScreen(
-                backAction = { currentScreen = Route.Welcome }
-            )
-
-            Route.Permissions -> PermissionsScreen(
-                backAction = { currentScreen = Route.Welcome }
-            )
-
-            Route.Media -> MediaScreen(
-                backAction = { currentScreen = Route.Welcome }
-            )
-
-            Route.Biometry -> BiometryScreen(
-                backAction = { currentScreen = Route.Welcome }
-            )
-
-            Route.Geo -> GeoScreen(
-                backAction = { currentScreen = Route.Welcome }
-            )
-        }
     }
 }
 
