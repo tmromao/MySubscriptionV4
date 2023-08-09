@@ -13,42 +13,59 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.core.screen.ScreenKey
+import cafe.adriel.voyager.core.screen.uniqueScreenKey
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import domain.SignInScreenState
 import presentation.components.EmailTextField
 import presentation.components.PasswordTextField
+import presentation.ui.navigation.HomeScreen
 
-@Composable
-fun SignInScreen() {
+data class SignInScreen(
+    val index: Int,
+) : Screen {
 
-    val viewModel = getViewModel(
-        key = "sign-in-screen",
-        factory = viewModelFactory {
-            SignInScreenViewModel()
-        }
-    )
+    override val key: ScreenKey
+        get() = uniqueScreenKey
 
-    val state by viewModel.state.collectAsState()
+    @Composable
+    override fun Content() {
 
-    Column(
-        Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+        val viewModel = getViewModel(
+            key = "sign-in-screen",
+            factory = viewModelFactory {
+                SignInScreenViewModel()
+            }
+        )
 
-        Text("Sign In")
-        Spacer(modifier = Modifier.height(16.dp))
-        EmailTextField(state = state, onEvent = viewModel::onEvent)
-        Spacer(modifier = Modifier.height(16.dp))
-        PasswordTextField(state = state, onEvent = viewModel::onEvent)
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = { viewModel.onEvent(SignInScreenEvent.SignInClicked) },
+        val state by viewModel.state.collectAsState()
+
+        val navigator = LocalNavigator.currentOrThrow
+
+        Column(
+            Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
+
             Text("Sign In")
+            Spacer(modifier = Modifier.height(16.dp))
+            EmailTextField(state = state, onEvent = viewModel::onEvent)
+            Spacer(modifier = Modifier.height(16.dp))
+            PasswordTextField(state = state, onEvent = viewModel::onEvent)
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = {
+                    viewModel.onEvent(SignInScreenEvent.SignInClicked)
+                    navigator.push(HomeScreen(index = 1))
+                },
+            ) {
+                Text("Sign In")
+            }
+
         }
-
     }
-
 }
