@@ -59,9 +59,9 @@ kotlin {
 
                 implementation("dev.icerock.moko:geo-compose:$mokoGeoVersion")
 
-                implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+               // implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+                //implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+               // implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
 
                 // fix of Could not find "shared/build/kotlinTransformedMetadataLibraries/commonMain/org.jetbrains.kotlinx-atomicfu-0.17.3-nativeInterop-8G5yng.klib"
                 implementation("org.jetbrains.kotlinx:atomicfu:0.17.3")
