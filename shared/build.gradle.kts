@@ -41,9 +41,11 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
+                implementation(compose.animation)
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                api(compose.materialIconsExtended)
 
                 implementation("dev.icerock.moko:resources-compose:$mokoResourcesVersion")
 
@@ -63,6 +65,11 @@ kotlin {
 
                 // fix of Could not find "shared/build/kotlinTransformedMetadataLibraries/commonMain/org.jetbrains.kotlinx-atomicfu-0.17.3-nativeInterop-8G5yng.klib"
                 implementation("org.jetbrains.kotlinx:atomicfu:0.17.3")
+
+                // Tlaster precompose navigation
+                api("moe.tlaster:precompose:1.5.0-beta01")
+                api("moe.tlaster:precompose-viewmodel:1.5.0-beta01")
+
             }
         }
         val androidMain by getting {

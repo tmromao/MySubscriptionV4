@@ -1,27 +1,11 @@
 package presentation.ui.navigation
 
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
+
 import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.core.annotation.ExperimentalVoyagerApi
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.core.screen.ScreenKey
 import cafe.adriel.voyager.core.screen.uniqueScreenKey
-import cafe.adriel.voyager.navigator.tab.CurrentTab
-import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
-import cafe.adriel.voyager.navigator.tab.Tab
-import cafe.adriel.voyager.navigator.tab.TabDisposable
-import cafe.adriel.voyager.navigator.tab.TabNavigator
-import presentation.ui.navigation.HomeTab.title
 
 
 data class HomeScreen(
@@ -31,10 +15,11 @@ data class HomeScreen(
     override val key: ScreenKey
         get() = uniqueScreenKey
 
-    @OptIn(ExperimentalVoyagerApi::class)
+
     @Composable
     override fun Content() {
-        TabNavigator(
+        Text("Hello World")
+       /* TabNavigator(
             HomeTab,
             tabDisposable = {
                 TabDisposable(
@@ -58,19 +43,19 @@ data class HomeScreen(
                     }
                 }
             )
-        }
+        }*/
     }
 }
 
-@Composable
+/*@Composable
 private fun RowScope.TabNavigationItem(tab: Tab){
     val tabNavigator = LocalTabNavigator.current
 
     BottomNavigationItem(
         selected = tabNavigator.current.key == tab.key,
         onClick = { tabNavigator.current = tab },
-        icon = { Icon(tab.options.icon!!, tab.options.title)}
+        icon = { Icon(tab.icon!!, tab.title)}
     )
-}
+}*/
 
 
