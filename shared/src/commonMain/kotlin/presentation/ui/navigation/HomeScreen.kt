@@ -6,36 +6,39 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
+import moe.tlaster.precompose.navigation.rememberNavigator
 
 
 @Composable
 fun HomeScreen(
-    //navigator: Navigator,//
+    navigator: Navigator = rememberNavigator(),
 ) {
 
-    Text("Hello World")
+    Scaffold(
+        bottomBar = {
+            BottomNavigationUI(navigator = navigator)
 
+        }
 
-    /*    Scaffold (
-            bottomBar = {
-                when(currentRoute(navigator)) {
-                    NavigationScreen.HomeNav.route -> BottomNavigationUI(navigator = navigator)
-                    else -> BottomNavigationUI(navigator = navigator)
-                }
-            }
-
-        ){ Text("Hello World") }*/
+    ) {
+        Text("Home Screen")
+        Navigation(navigator)
+    }
 
 }
-/*
+
 
 @Composable
 fun BottomNavigationUI(navigator: Navigator) {
     BottomNavigation {
         val items = listOf(
             NavigationScreen.HomeNav,
+            NavigationScreen.PopularNav,
+            NavigationScreen.TopRatedNav,
+            NavigationScreen.UpcomingNav,
         )
         items.forEach {
             BottomNavigationItem(label = { Text(text = it.title) },
@@ -55,5 +58,9 @@ fun BottomNavigationUI(navigator: Navigator) {
 
 }
 
+@Composable
+private fun currentRoute(navigator: Navigator): String? {
+    return navigator.currentEntry.collectAsState(null).value?.route?.route
+}
 
-*/
+

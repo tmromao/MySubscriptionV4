@@ -4,25 +4,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
-import presentation.ui.SignInScreen
 
 @Composable
-fun AuthenticationNavigation(navigator: Navigator) {
+fun Navigation(navigator: Navigator) {
 
     NavHost(
         navigator = navigator,
-        initialRoute = AuthGraphNavigationScreen.SignInScreen.route,
+        initialRoute = NavigationScreen.Home.route,
     ){
-        scene(route = AuthGraphNavigationScreen.SignInScreen.route){
-            SignInScreen(navigator)
+        scene(route = NavigationScreen.Home.route){
+            HomeScreen(navigator)
         }
-        scene(route = AuthGraphNavigationScreen.HomeScreen.route){
-            HomeScreen()
+        scene(route = NavigationScreen.Popular.route){
+            PopularScreen(navigator)
+        }
+        scene(route = NavigationScreen.TopRated.route){
+            TopRatedScreen(navigator)
+        }
+        scene(route = NavigationScreen.Upcoming.route){
+            UpcomingScreen(navigator)
         }
     }
+
 }
 
-@Composable
-fun currentRoute(navigator: Navigator):String? {
-    return navigator.currentEntry.collectAsState(null).value?.route?.route
-}
