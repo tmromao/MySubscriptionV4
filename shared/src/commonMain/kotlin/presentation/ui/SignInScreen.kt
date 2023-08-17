@@ -13,10 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
+import moe.tlaster.precompose.navigation.PopUpTo
 import presentation.components.EmailTextField
 import presentation.components.PasswordTextField
 import presentation.ui.navigation.NavigationScreen
+import presentation.ui.navigation.NavigationScreen.Home.route
 
 @Composable
 fun SignInScreen(
@@ -41,7 +44,17 @@ fun SignInScreen(
         Button(
             onClick = {
                 viewModel.onEvent(SignInScreenEvent.SignInClicked)
-                navigator.navigate(NavigationScreen.Home.route)
+                //navigator.navigate(NavigationScreen.Home.route)
+                navigator.navigate(
+                    route = "/grouphome",
+                    NavOptions(
+                        popUpTo = PopUpTo(
+                            route = "/groupsignin",
+                            inclusive = true,
+                        )
+                    ),
+                    //navigator.popBackStack()
+                )
             },
         ) {
             Text("Sign In")
