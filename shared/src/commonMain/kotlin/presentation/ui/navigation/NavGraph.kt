@@ -7,17 +7,17 @@ import moe.tlaster.precompose.navigation.Navigator
 import presentation.ui.SignInScreen
 
 @Composable
-fun Navigation(navigator: Navigator) {
+fun AuthenticationNavigation(navigator: Navigator) {
 
     NavHost(
         navigator = navigator,
-        initialRoute = NavigationScreen.SignInScreen.route,
+        initialRoute = AuthGraphNavigationScreen.SignInScreen.route,
     ){
-        scene(route = NavigationScreen.SignInScreen.route){
+        scene(route = AuthGraphNavigationScreen.SignInScreen.route){
             SignInScreen(navigator)
         }
-        scene(route = NavigationScreen.HomeScreen.route){
-            HomeScreen(navigator)
+        scene(route = AuthGraphNavigationScreen.HomeScreen.route){
+            HomeScreen()
         }
     }
 }

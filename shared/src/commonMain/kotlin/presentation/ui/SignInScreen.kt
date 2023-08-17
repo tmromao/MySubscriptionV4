@@ -16,8 +16,7 @@ import androidx.compose.ui.unit.dp
 import moe.tlaster.precompose.navigation.Navigator
 import presentation.components.EmailTextField
 import presentation.components.PasswordTextField
-import presentation.ui.navigation.HomeScreen
-import presentation.ui.navigation.NavigationScreen
+import presentation.ui.navigation.AuthGraphNavigationScreen
 
 @Composable
 fun SignInScreen(
@@ -42,7 +41,7 @@ fun SignInScreen(
         Button(
             onClick = {
                 viewModel.onEvent(SignInScreenEvent.SignInClicked)
-                navigator.navigate(NavigationScreen.HomeScreen.route)
+                navigator.navigate(AuthGraphNavigationScreen.HomeScreen.route)
             },
         ) {
             Text("Sign In")

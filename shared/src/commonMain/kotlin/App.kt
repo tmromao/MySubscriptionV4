@@ -11,18 +11,18 @@ import androidx.compose.runtime.setValue
 import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.rememberNavigator
-import presentation.ui.navigation.Navigation
-import presentation.ui.navigation.NavigationScreen
+import presentation.ui.navigation.AuthenticationNavigation
 import presentation.ui.navigation.currentRoute
 
 @Composable
 internal fun App() {
 
+
     val navigator = rememberNavigator()
 
     MaterialTheme {
 
-        Navigation(navigator = navigator)
+        AuthenticationNavigation(navigator = navigator)
        /* Scaffold(
             bottomBar = {
 
@@ -41,27 +41,5 @@ internal fun App() {
     }
 }
 
-@Composable
-fun BottomNavigationUI(navigator: Navigator) {
-    BottomNavigation {
-        val items = listOf(
-            NavigationScreen.HomeNav,
-        )
-        items.forEach {
-            BottomNavigationItem(label = { Text(text = it.title) },
-                selected = it.route == currentRoute(navigator),
-                icon = it.navIcon,
-                onClick = {
-                    navigator.navigate(
-                        it.route,
-                        NavOptions(
-                            launchSingleTop = true
-                        ),
-                    )
-                })
-        }
-    }
-
-}
 
 expect fun getPlatformName(): String

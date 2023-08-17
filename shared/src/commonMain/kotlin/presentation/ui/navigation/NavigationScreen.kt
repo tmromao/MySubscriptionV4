@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-sealed class NavigationScreen(
+sealed class AuthGraphNavigationScreen(
     val route: String,
     val title: String = "My Title",
     val navIcon: (@Composable () -> Unit) = {
@@ -18,17 +18,9 @@ sealed class NavigationScreen(
     val objectName: String = "",
     val objectPath: String = "",
 ) {
-    object HomeScreen : NavigationScreen("home_screen")
+    object HomeScreen : AuthGraphNavigationScreen("home_screen")
 
-    object SignInScreen : NavigationScreen("sign_in_screen")
+    object SignInScreen : AuthGraphNavigationScreen("sign_in_screen")
 
-    object HomeNav : NavigationScreen("home_nav_screen", title = "Home", navIcon = {
-        Icon(
-            Icons.Filled.Home,
-            contentDescription = "Home",
-            modifier = Modifier
-                .padding(end = 16.dp)
-                .offset(x = 10.dp)
-        )
-    })
+
 }
