@@ -11,7 +11,7 @@ import androidx.compose.runtime.setValue
 import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.rememberNavigator
-import presentation.ui.navigation.AuthenticationNavigation
+import presentation.ui.navigation.Navigation
 import presentation.ui.navigation.currentRoute
 
 @Composable
@@ -22,22 +22,9 @@ internal fun App() {
 
     MaterialTheme {
 
-        AuthenticationNavigation(navigator = navigator)
-       /* Scaffold(
-            bottomBar = {
 
-            }
-        ) { }*/
+        Navigation(navigator = navigator)
 
-
-        //Text("Hello ${getPlatformName()}")
-        /*Navigator(
-            screen = SignInScreen(index = 0),
-            onBackPressed = { currentScreen ->
-                print("Navigator")
-                true
-            },
-        )*/
     }
 }
 

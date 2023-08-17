@@ -14,18 +14,16 @@ import moe.tlaster.precompose.navigation.rememberNavigator
 
 @Composable
 fun HomeScreen(
-    navigator: Navigator = rememberNavigator(),
+    navigator: Navigator,
 ) {
 
     Scaffold(
         bottomBar = {
             BottomNavigationUI(navigator = navigator)
-
         }
-
     ) {
         Text("Home Screen")
-        Navigation(navigator)
+        //Navigation(navigator)
     }
 
 }
@@ -58,9 +56,5 @@ fun BottomNavigationUI(navigator: Navigator) {
 
 }
 
-@Composable
-private fun currentRoute(navigator: Navigator): String? {
-    return navigator.currentEntry.collectAsState(null).value?.route?.route
-}
 
 
