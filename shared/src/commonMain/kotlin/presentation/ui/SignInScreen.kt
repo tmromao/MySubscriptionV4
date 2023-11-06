@@ -13,21 +13,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
-import domain.SignInScreenState
+import moe.tlaster.precompose.navigation.NavOptions
+import moe.tlaster.precompose.navigation.Navigator
+import moe.tlaster.precompose.navigation.PopUpTo
 import presentation.components.EmailTextField
 import presentation.components.PasswordTextField
+import presentation.ui.navigation.NavigationScreen
+import presentation.ui.navigation.NavigationScreen.Home.route
 
 @Composable
-fun SignInScreen() {
-
-    val viewModel = getViewModel(
-        key = "sign-in-screen",
-        factory = viewModelFactory {
-            SignInScreenViewModel()
-        }
-    )
+fun SignInScreen(
+    navigator: Navigator,
+    viewModel: SignInScreenViewModel = SignInScreenViewModel(),
+) {
 
     val state by viewModel.state.collectAsState()
 
@@ -44,11 +42,23 @@ fun SignInScreen() {
         PasswordTextField(state = state, onEvent = viewModel::onEvent)
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { viewModel.onEvent(SignInScreenEvent.SignInClicked) },
+            onClick = {
+                viewModel.onEvent(SignInScreenEvent.SignInClicked)
+                //navigator.navigate(NavigationScreen.Home.route)
+                navigator.navigate(
+                    route = "/grouphome",
+                    NavOptions(
+                        popUpTo = PopUpTo(
+                            route = "/groupsignin",
+                            inclusive = true,
+                        )
+                    ),
+                    //navigator.popBackStack()
+                )
+            },
         ) {
             Text("Sign In")
         }
 
     }
-
 }

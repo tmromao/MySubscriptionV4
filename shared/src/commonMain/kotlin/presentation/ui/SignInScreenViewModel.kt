@@ -1,11 +1,11 @@
 package presentation.ui
 
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.SignInScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import moe.tlaster.precompose.viewmodel.ViewModel
 
-class SignInScreenViewModel:ViewModel() {
+class SignInScreenViewModel: ViewModel() {
 
     private val _state = MutableStateFlow(SignInScreenState())
             val state = _state.asStateFlow()

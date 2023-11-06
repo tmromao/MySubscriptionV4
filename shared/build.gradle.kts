@@ -35,13 +35,17 @@ kotlin {
         val mokoBiometryVersion = extra["moko.biometry.version"] as String
         val mokoGeoVersion = extra["moko.geo.version"] as String
 
+        val voyagerVersion = extra["voyager.version"] as String
+
         val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
+                implementation(compose.animation)
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                api(compose.materialIconsExtended)
 
                 implementation("dev.icerock.moko:resources-compose:$mokoResourcesVersion")
 
@@ -55,8 +59,17 @@ kotlin {
 
                 implementation("dev.icerock.moko:geo-compose:$mokoGeoVersion")
 
+               // implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+                //implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+               // implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+
                 // fix of Could not find "shared/build/kotlinTransformedMetadataLibraries/commonMain/org.jetbrains.kotlinx-atomicfu-0.17.3-nativeInterop-8G5yng.klib"
                 implementation("org.jetbrains.kotlinx:atomicfu:0.17.3")
+
+                // Tlaster precompose navigation
+                api("moe.tlaster:precompose:1.5.0-beta01")
+                api("moe.tlaster:precompose-viewmodel:1.5.0-beta01")
+
             }
         }
         val androidMain by getting {
